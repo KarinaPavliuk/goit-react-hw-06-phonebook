@@ -1,5 +1,3 @@
-//import { useEffect } from 'react';
-// import { nanoid } from 'nanoid';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
@@ -10,31 +8,14 @@ import { handleFilterChanges } from 'store/filter/slice';
 export const App = () => {
   const { contacts, filter } = useSelector(store => store);
 
-  console.log('contacts', contacts.contacts);
-  console.log('filter', filter.filter);
-
   const dispatch = useDispatch();
 
-  // const [contacts, setContacts] = useState(() =>
-  //   JSON.parse(localStorage.getItem('contacts') ?? initialContacts)
-  // );
-  // const [filter, setFilter] = useState('');
-
-  // useEffect(() => {
-  //   localStorage.setItem('contacts', JSON.stringify(contacts));
-  // }, [contacts]);
-
   const handleFilterChange = ({ target }) => {
-    console.log(target);
     dispatch(handleFilterChanges(target.value));
-    //setFilter(target.value);
   };
 
   const onDeleteClick = id => {
     dispatch(deleteContact(id));
-    // setContacts(prevContacts =>
-    //   prevContacts.filter(contact => contact.id !== id)
-    // );
   };
 
   const createContact = newContact => {
@@ -48,10 +29,6 @@ export const App = () => {
     }
 
     dispatch(createContactAction(newContact));
-    // setContacts(prevContacts => [
-    //   ...prevContacts,
-    //   { ...newContact, id: nanoid() },
-    // ]);
   };
 
   const getFilteredContacts = () => {
