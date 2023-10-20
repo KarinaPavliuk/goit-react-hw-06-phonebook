@@ -7,6 +7,8 @@ import { handleFilterChanges } from 'store/filter/slice';
 
 export const App = () => {
   const { contacts, filter } = useSelector(store => store);
+  const contactsArray = contacts.contacts;
+  const filterValue = filter.filter;
 
   const dispatch = useDispatch();
 
@@ -20,7 +22,7 @@ export const App = () => {
 
   const createContact = newContact => {
     if (
-      contacts.contacts.some(
+      contactsArray.some(
         contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
       )
     ) {
@@ -32,8 +34,8 @@ export const App = () => {
   };
 
   const getFilteredContacts = () => {
-    return contacts.contacts.filter(({ name }) =>
-      name.toLowerCase().includes(filter.filter.toLowerCase())
+    return contactsArray.filter(({ name }) =>
+      name.toLowerCase().includes(filterValue.toLowerCase())
     );
   };
 
@@ -44,7 +46,7 @@ export const App = () => {
       <h1>Phonebook</h1>
       <ContactForm createContact={createContact} />
       <h2>Contacts</h2>
-      <Filter handleChange={handleFilterChange} value={filter.filter} />
+      <Filter handleChange={handleFilterChange} value={filterValue} />
       <ContactList
         filteredContacts={filteredContacts}
         onDeleteClick={onDeleteClick}
