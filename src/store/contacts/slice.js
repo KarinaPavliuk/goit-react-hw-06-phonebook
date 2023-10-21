@@ -19,9 +19,7 @@ export const contactSlice = createSlice({
         };
       },
       reducer: (state, { payload }) => {
-        state.contacts
-          ? state.contacts.push(payload)
-          : (state.contacts = [payload]);
+        state.contacts.push(payload);
       },
     },
     deleteContact: (state, { payload }) => {
